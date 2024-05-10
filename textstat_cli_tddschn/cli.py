@@ -16,7 +16,7 @@ def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description="TextStat CLI",
+        description="TextStat (https://github.com/textstat/textstat) CLI",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
@@ -29,7 +29,10 @@ def get_args():
     )
 
     parser.add_argument(
-        "-t", "--tabulate", help="Output in tabulated format", action="store_true"
+        "-T",
+        "--no-tabulate",
+        help="Do not output in tabulated format",
+        action="store_true",
     )
 
     return parser.parse_args()
@@ -69,17 +72,20 @@ def main():
         "sentence_count": textstat.sentence_count(text_content),
         "char_count": textstat.char_count(text_content),
         "letter_count": textstat.letter_count(text_content),
-        "polysyllable_count": textstat.polysyllable_count(text_content),
-        "monosyllable_count": textstat.monosyllable_count(text_content),
+        # "polysyllable_count": textstat.polysyllablecount(text_content),
+        # "monosyllable_count": textstat.monosyllable_count(text_content),
     }
 
     if args.json:
         print(json.dumps(results, indent=2))
-    elif args.tabulate:
-        print(tabulate([results], headers="keys"))
-    else:
+    elif args.no_tabulate:
         for key, value in results.items():
             print(f"{key}: {value}")
+    else:
+        print(tabulate(results.items(), headers=["Metric", "Value"]))
+        print(
+            f"\nExplanation of the metircs can be found at https://github.com/textstat/textstat\n\nPlease note that some of these metrics are not meant for English texts."
+        )
 
 
 if __name__ == "__main__":
