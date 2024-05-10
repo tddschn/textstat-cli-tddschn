@@ -16,6 +16,20 @@ doc = ["sphinx", "sphinx_rtd_theme"]
 test = ["pytest", "ruff"]
 
 [[package]]
+name = "tabulate"
+version = "0.9.0"
+description = "Pretty-print tabular data"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "tabulate-0.9.0-py3-none-any.whl", hash = "sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f"},
+    {file = "tabulate-0.9.0.tar.gz", hash = "sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c"},
+]
+
+[package.extras]
+widechars = ["wcwidth"]
+
+[[package]]
 name = "textstat"
 version = "0.7.3"
 description = "Calculate statistical features from text"
@@ -31,5 +45,5 @@ pyphen = "*"
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.12"
-content-hash = "7c392cdea6173ab9ff3f8d5f95aa1754ca3208160075f8d253fc7f5502846580"
+python-versions = ">=3.10, <4.0"
+content-hash = "de45657f745a65168e6dcffd04c2fcdf4b646f828d7140209ac311c69e2c4f74"
